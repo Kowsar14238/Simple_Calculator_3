@@ -10,22 +10,36 @@ function appendNumber(number) {
   document.getElementById("result").value = expression;
 }
 
+function appendDoubleZero() {
+  if (shouldReplace){
+    expression = '00';
+    shouldReplace = false;
+  }
+  else{
+    expression += '00';
+  }
+
+  document.getElementById('result').value = expression;
+}
+
 function appendOperator(operator) {
   shouldReplace = false;
-  if (expression !== "") {
+
+  if (expression !== ""){
     expression += operator;
     document.getElementById("result").value = expression;
   }
 }
 
 function appendDecimal() {
-  if (shouldReplace) {
+  if (shouldReplace){
     expression = "0.";
     shouldReplace = false;
   } 
-  else if (!expression.includes(".")) {
+  else if (!expression.includes(".")){
     expression += ".";
   }
+
   document.getElementById("result").value = expression;
 }
 
@@ -37,13 +51,8 @@ function calculate() {
     shouldReplace = true;
   } 
   catch (error) {
-    document.getElementById("result").value = "Error";
+    document.getElementById("result").value = "error";
   }
-}
-
-function clearInput() {
-  expression = "";
-  document.getElementById("result").value = "";
 }
 
 function calculatePercentage() {
@@ -59,9 +68,16 @@ function calculatePercentage() {
   }
 }
 
+function clearInput() {
+  expression = "";
+  document.getElementById("result").value = "";
+}
+
 function deleteLastCharacter() {
   if (expression.length > 0) {
     expression = expression.slice(0, -1);
     document.getElementById("result").value = expression;
   }
 }
+
+
